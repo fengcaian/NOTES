@@ -1,0 +1,28 @@
+浏览器缓存
+分为强缓存和协商缓存：
+1）强缓存：分为expires和cache-control,同时设置，cache-control优先。不向服务器发送资源请求，在客户端完成缓存校验，200状态码
+原理：
+expires:第一次请求资源后，服务器在返回资源的同时在response header里面添加expires信息，其值为一个GTM格式的绝对时间，客户端浏览器在拿到资源后，将资源连同response header信息一起缓存。
+第二次请求该资源时，先去缓存中寻找，找到该资源后，拿到它的expires时间与当前请求时间进行比较，如果当前请求时间在expires之前，则直接加载缓存中的资源，否则不能命中缓存，当再次请求服务器时，
+服务器将资源连同新的expires返回，客户端浏览器拿到后再次将二者缓存。
+cache-control：第一次请求资源后，服务器在返回资源的同时在response header里面添加一个cache-control，其值设置为max-age=number，number为一个数字，单位是秒，客户端在拿到资源后，将资源连同response header信息
+一起缓存。第二次请求该资源时，先去缓存中寻找该资源，若找到，拿到它的cache-control，根据设置的时间及上次的请求时间，算出当前请求时间是否小于该时间，若小于，表命中缓存，直接从缓存中加载资源。若没有命中，则
+再次从服务器加载资源时，cache-control header会被更新。
+2）协商缓存：分为【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】这两对Header，同时设置时，ETag优先。会向服务器发送请求，在服务器端完成缓存校验，304状态码
+原理：
+【Last-Modified，If-Modified-Since】：第一次请求资源后，服务器在返回资源的同时在response header里面添加Last-Modified信息，其值为最后修改时间，返回后客户端浏览器将资源和请求头信息缓存下来，再次请求时，会在
+request header里面加上If-Modified-Since信息，其值为上次返回的Last-Nodified,客户端收到请求后，将传过来的If-Modified-Since和资源在服务器上的最后修改时间判断资源是否有变化，如果没有变化则返回304 Not Modified，
+但是不会返回资源内容；如果有变化，就正常返回资源内容。当服务器返回304 Not Modified的响应时，response header中不会再添加Last-Modified的header，因为既然资源没有变化，那么Last-Modified也就不会改变
+【ETag、If-None-Match】：第一次请求资源后，服务器在返回资源的同时在response header里面添加ETag信息，其值为服务器根据当前请求的资源生成的一个唯一标识，这个唯一标识是一个字符串，只要资源有变化这个串就不同，
+跟最后修改时间没有关系，所以能很好的补充Last-Modified的问题。浏览器再次跟服务器请求这个资源时，在request的header上加上If-None-Match的header，这个header的值就是上一次请求时返回的ETag的值，服务器再次收到资源
+请求时，根据浏览器传过来If-None-Match和然后再根据资源生成一个新的ETag，如果这两个值相同就说明资源没有变化，否则就是有变化；如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资
+源内容。与Last-Modified不一样的是，当服务器返回304 Not Modified的响应时，由于ETag重新生成过，response header中还会把这个ETag返回，即使这个ETag跟之前的没有变化，浏览器收到304的响应后，就会从缓存中加载资源。
+
+协商缓存的问题：
+1、一些文件也许会周期性的更改，但是他的内容并不改变(仅仅改变的修改时间)，这个时候我们并不希望客户端认为这个文件被修改了，而重新GET；
+2、某些文件修改非常频繁，比如在秒以下的时间内进行修改，(比方说1s内修改了N次)，If-Modified-Since能检查到的粒度是s级的，这种修改无法判断(或者说UNIX记录MTIME只能精确到秒)；
+3、某些服务器不能精确的得到文件的最后修改时间。
+4、分布式系统里多台机器间文件的Last-Modified必须保持一致，以免负载均衡到不同机器导致比对失败；
+5、分布式系统尽量关闭掉ETag(每台机器生成的ETag都会不一样）
+
+cache-control其他设置值：

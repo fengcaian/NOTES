@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas id="canvas" width="800px" height="600px"></canvas>
+</body>
+<script>
+    var Clock = {
+        scale: 10,
+        radius: 150,
+        centerX: 400,
+        centerY: 300,
+        drawClock: function(ctx) {
+            ctx.beginPath();
+            ctx.lineWidth = 1;
+            ctx.arc(this.centerX, this.centerY, this.radius, 0, Math.PI * 2, false);
+            ctx.strokeStyle = 'rgba(6,128,67,.5)';
+            ctx.closePath();
+            ctx.stroke();
+        },
+        drawScale: function(ctx) {
+            for (var i = 0, l = 60; i < l; i++) {
+                var secondScale = 0;
+                var lineWidth = 1;
+                if (!(i % 5)) {
+                    secondScale = 5;
+                    lineWidth = 2;
+                    ctx.fillText(!i ? 12 : i / 5, this.centerX + this.radius * Math.sin(i * Math.PI / 30) * 1.2 - 10, this.centerY - this.radius * Math.cos(i * Math.PI / 30) * 1.2 + 10);
+                }
+                ctx.beginPath();
+                ctx.lineWidth = lineWidth;
+                ctx.moveTo(this.centerX + (this.radius - this.scale - secondScale) * Math.sin(i * Math.PI / 30), this.centerY - (this.radius - this.scale - secondScale) * Math.cos(i * Math.PI / 30));
+                ctx.lineTo(this.centerX + this.radius * Math.sin(i * Math.PI / 30), this.centerY - this.radius * Math.cos(i * Math.PI / 30));
+                ctx.closePath();
+                ctx.stroke();
+            }
+        },
+        drawSecond: function(ctx, date) {
+            var dateS = date.getSeconds();
+            ctx.beginPath();
+            ctx.save();
+            ctx.lineWidth = 1;
+            ctx.moveTo(this.centerX, this.centerY);
+            ctx.lineTo(this.centerX + (this.radius - this.scale - 10) * Math.sin(Math.PI / 30 * dateS), this.centerY - (this.radius - this.scale - 10) * Math.cos(Math.PI / 30 * dateS));
+            ctx.closePath();
+            ctx.restore();
+            ctx.stroke();
+        },
+        drawMinute: function(ctx, date) {
+            var dateM = date.getMinutes();
+            ctx.beginPath();
+            ctx.lineWidth = 2;
+            ctx.moveTo(this.centerX, this.centerY);
+            ctx.lineTo(this.centerX + (this.radius - this.scale - 30) * Math.sin(Math.PI / 30 * dateM), this.centerY - (this.radius - this.scale - 30) * Math.cos(Math.PI / 30 * dateM));
+            ctx.closePath();
+            ctx.stroke();
+        },
+        drawHour: function(ctx, date) {
+            var dateH = date.getHours();
+            var dateM = date.getMinutes();
+            var dateS = date.getSeconds();
+            ctx.beginPath();
+            ctx.lineWidth = 3;
+            var angles = Math.PI / 6 * (dateH + dateM / 60 + dateS / 3600);
+            ctx.moveTo(this.centerX, this.centerY);
+            ctx.lineTo(this.centerX + (this.radius - this.scale - 50) * Math.sin(angles), this.centerY - (this.radius - this.scale - 50) * Math.cos(angles));
+            ctx.closePath();
+            ctx.stroke();
+            ctx.restore();
+        }
+    };
+
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+        ctx.font = ' bold 30px impack';
+        ctx.lineWidth = 2;
+        function draw() {
+            var date = new Date();
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            Clock.drawClock(ctx);//画表盘
+            Clock.drawScale(ctx);//画刻度
+            Clock.drawSecond(ctx, date);//秒针
+            Clock.drawMinute(ctx, date);//分针
+            Clock.drawHour(ctx, date);//时针
+        }
+        setInterval(draw, 1000);
+    }
+</script>
+</html>

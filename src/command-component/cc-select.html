@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉框</title>
+    <style type="text/css">
+        .J-tab .active{background-color:#03A9F4;}
+        .J-tab div{display:none;}
+    </style>
+</head>
+<body ng-controller="controller">
+<div>
+    {{options}}
+</div>
+<cc-select option="options"></cc-select>
+<my-tab my-id="div1" my-data="sports" class="J-tab"></my-tab>
+<my-tab my-id="div2" my-data="time" class="J-tab"></my-tab>
+</body>
+<script src="../../lib/angular/angular.js"></script>
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('controller', ['$scope', function ($scope) {
+        $scope.options = 'hello cc-select';
+        $scope.sports = [
+            {title : '篮球',content : '篮球运动'},
+            {title : '足球',content : '足球运动'},
+            {title : '排球',content : '排球运动'}
+        ];
+        $scope.time = [
+            {title : '上午',content : '上午好'},
+            {title : '中午',content : '中午好'}
+        ];
+    }]);
+    app.directive('ccSelect', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            template: '<div>{{option}}<div>',
+            scope: {
+                option: '=?'
+            },
+            controller: function ($scope) {
+                console.log($scope);
+            },
+            link: function (scope, element) {
+                //scope.option2 = scope.option;
+            }
+        }
+    });
+    app.directive('myTab',function(){
+        return {
+            restrict : 'E',
+            replace : true,
+            scope : {
+                myId : '@',
+                myData : '='
+            },
+            controller : ['$scope',function($scope){
+                $scope.name = 'this is a xiecg';
+            }],
+            template : '<div id="{{myId}}">'+
+                    '<input ng-repeat="data in myData" type="button" ng-value="data.title" ng-class="{active:$first}">'+
+                    '<div ng-repeat="data in myData" ng-style="{display:$first?\'block\':\'none\'}">{{data.content}}</div>'+
+                '</div>',
+            link : function(scope,element,attr){
+                element.on('click','input',function(){
+                    var self = $(this) , i = self.index();
+                    self.addClass('active').siblings('input').removeClass('active');
+                    self.siblings('div').eq(i).show().siblings('div').hide();
+                });
+            }
+        };
+    });
+
+</script>
+</html>

@@ -3,24 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>下拉框</title>
+    <link rel="stylesheet" href="../../theme/bootstrap/bootstrap.css">
     <style type="text/css">
         .J-tab .active{background-color:#03A9F4;}
         .J-tab div{display:none;}
     </style>
 </head>
 <body ng-controller="controller">
-<div>
-    {{options}}
-</div>
 <cc-select option="options"></cc-select>
-<my-tab my-id="div1" my-data="sports" class="J-tab"></my-tab>
-<my-tab my-id="div2" my-data="time" class="J-tab"></my-tab>
+<!--<my-tab my-id="div1" my-data="sports" class="J-tab"></my-tab>
+<my-tab my-id="div2" my-data="time" class="J-tab"></my-tab>-->
 </body>
+<script src="../../lib/jquery/jquery-1.9.1.js"></script>
+<script src="../../lib/bootstrap/bootstrap.js"></script>
 <script src="../../lib/angular/angular.js"></script>
 <script>
     var app = angular.module('myApp',[]);
     app.controller('controller', ['$scope', function ($scope) {
-        $scope.options = 'hello cc-select';
+        $scope.options = {
+            placeholder: '-- 请选择 --',
+            selectedId: '',
+            option: [
+                {
+                    label: '篮球',
+                    value: 1
+                },
+                {
+                    label: '足球',
+                    value: 2
+                },
+                {
+                    label: '排球',
+                    value: 3
+                }
+            ]
+        };
         $scope.sports = [
             {title : '篮球',content : '篮球运动'},
             {title : '足球',content : '足球运动'},
@@ -35,7 +52,11 @@
         return {
             restrict: 'E',
             replace: true,
-            template: '<div>{{option}}<div>',
+            template: '<div class="col-xs-2">\n' +
+            '    <select class="form-control" onchange="">\n' +
+            '        <option ng-repeat="o in option.option" value="o.value">{{o.label}}</option>\n' +
+            '    </select>\n' +
+            '</div>',
             scope: {
                 option: '=?'
             },
@@ -43,7 +64,7 @@
                 console.log($scope);
             },
             link: function (scope, element) {
-                //scope.option2 = scope.option;
+                var selectedId = '';
             }
         }
     });

@@ -10,7 +10,7 @@
     </style>
 </head>
 <body ng-controller="controller">
-<cc-select option="options"></cc-select>
+<cc-select option="balls.option" change="balls.change" disabled="balls.disabled"></cc-select>
 <!--<my-tab my-id="div1" my-data="sports" class="J-tab"></my-tab>
 <my-tab my-id="div2" my-data="time" class="J-tab"></my-tab>-->
 </body>
@@ -20,9 +20,10 @@
 <script>
     var app = angular.module('myApp',[]);
     app.controller('controller', ['$scope', function ($scope) {
-        $scope.options = {
+        $scope.balls = {
             placeholder: '-- 请选择 --',
-            selectedId: '',
+            value: '',
+            disabled: false,
             option: [
                 {
                     label: '篮球',
@@ -36,7 +37,10 @@
                     label: '排球',
                     value: 3
                 }
-            ]
+            ],
+            change: function (option){
+                console.log(option);
+            }
         };
         $scope.sports = [
             {title : '篮球',content : '篮球运动'},
@@ -53,18 +57,29 @@
             restrict: 'E',
             replace: true,
             template: '<div class="col-xs-2">\n' +
-            '    <select class="form-control" onchange="">\n' +
-            '        <option ng-repeat="o in option.option" value="o.value">{{o.label}}</option>\n' +
+            '    <select id="select" class="form-control">\n' +
+            '        <option ng-repeat="o in option" value="{{o.value}}">{{o.label}}</option>\n' +
             '    </select>\n' +
             '</div>',
             scope: {
-                option: '=?'
+                option: '=?',
+                change: '=',
+                disabled: '='
             },
             controller: function ($scope) {
                 console.log($scope);
             },
             link: function (scope, element) {
-                var selectedId = '';
+                var isDisabled = scope.disabled || false;
+                var select = angular.element(element);
+                select.find('select').attr('disabled',isDisabled);
+                element.on('change', 'select',  function(e){
+                    var oSelected = select.find("option:selected");
+                    scope.change && scope.change({
+                        label: oSelected.text(),
+                        value: oSelected.val()
+                    });
+                });
             }
         }
     });

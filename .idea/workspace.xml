@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba9742cc-84f4-43b8-845a-245affdf3f66" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/bootstrap/bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jquery/jquery-1.9.1.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/dropDown.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/theme/bootstrap/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/command-component/cc-select.html" afterPath="$PROJECT_DIR$/src/command-component/cc-select.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -44,12 +39,11 @@
       <file leaf-file-name="cc-select.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/command-component/cc-select.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1093">
-              <caret line="53" column="26" lean-forward="true" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
+            <state relative-caret-position="180">
+              <caret line="27" column="17" lean-forward="true" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
               <folding>
-                <element signature="e#1432#1530#0" expanded="false" />
-                <element signature="e#2239#3220#0" expanded="false" />
-                <marker date="1515510205803" expanded="true" signature="2568:2840" ph="..." />
+                <element signature="e#1598#1696#0" expanded="false" />
+                <marker date="1515596777792" expanded="true" signature="3254:3526" ph="..." />
               </folding>
             </state>
           </provider>
@@ -58,8 +52,8 @@
       <file leaf-file-name="dropDown.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/dropDown.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="613">
-              <caret line="29" column="6" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="29" selection-end-column="6" />
+            <state relative-caret-position="343">
+              <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -83,10 +77,10 @@
       <list>
         <option value="$PROJECT_DIR$/JS/canvasClock.html" />
         <option value="$PROJECT_DIR$/src/command-component/cc-select.js" />
-        <option value="$PROJECT_DIR$/src/test/dropDown.html" />
         <option value="$PROJECT_DIR$/src/command-component/cc-select3.html" />
         <option value="$PROJECT_DIR$/lib/angular/angular.js" />
         <option value="$PROJECT_DIR$/src/command-component/cc-select.html" />
+        <option value="$PROJECT_DIR$/src/test/dropDown.html" />
       </list>
     </option>
   </component>
@@ -220,12 +214,12 @@
       <option name="presentableId" value="Default" />
       <updated>1514121637377</updated>
       <workItem from="1514121639294" duration="2823000" />
-      <workItem from="1515330175094" duration="18226000" />
+      <workItem from="1515330175094" duration="23586000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21049000" />
+    <option name="totallyTimeSpent" value="26409000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -324,14 +318,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/dropDown.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
-          <caret line="29" column="6" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="29" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/command-component/cc-select3.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -356,14 +342,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/dropDown.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/command-component/cc-select.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1093">
-          <caret line="53" column="26" lean-forward="true" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
+        <state relative-caret-position="180">
+          <caret line="27" column="17" lean-forward="true" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
           <folding>
-            <element signature="e#1432#1530#0" expanded="false" />
-            <element signature="e#2239#3220#0" expanded="false" />
-            <marker date="1515510205803" expanded="true" signature="2568:2840" ph="..." />
+            <element signature="e#1598#1696#0" expanded="false" />
+            <marker date="1515596777792" expanded="true" signature="3254:3526" ph="..." />
           </folding>
         </state>
       </provider>

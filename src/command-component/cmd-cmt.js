@@ -31,5 +31,18 @@ define([''], function (){
             }
         }
     });
+    module.directive('ccButton' ,function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            template: '',
+            scope: {
+
+            },
+            link: function (scope, element) {
+
+            }
+        }
+    });
     return module;
 });

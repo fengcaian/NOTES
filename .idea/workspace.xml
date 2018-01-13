@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba9742cc-84f4-43b8-845a-245affdf3f66" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/require.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/command-component/cmd-cmt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/framework.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.js" afterPath="$PROJECT_DIR$/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/command-component/cmd-cmt.js" afterPath="$PROJECT_DIR$/src/command-component/cmd-cmt.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework.js" afterPath="$PROJECT_DIR$/src/framework.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,8 +31,8 @@
       <file leaf-file-name="cc-select.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/command-component/cc-select.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="12" column="93" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="93" />
+            <state relative-caret-position="480">
+              <caret line="52" column="10" lean-forward="true" selection-start-line="44" selection-start-column="8" selection-end-line="52" selection-end-column="10" />
               <folding>
                 <element signature="e#1598#1696#0" expanded="false" />
                 <marker date="1515596777792" expanded="true" signature="3254:3526" ph="..." />
@@ -47,8 +44,8 @@
       <file leaf-file-name="cmd-cmt.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/command-component/cmd-cmt.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="2" column="46" lean-forward="true" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
+            <state relative-caret-position="30">
+              <caret line="1" column="50" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -57,8 +54,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="1" column="40" lean-forward="false" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
+            <state relative-caret-position="60">
+              <caret line="2" column="3" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -87,8 +84,8 @@
       <file leaf-file-name="framework.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/framework.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+            <state relative-caret-position="540">
+              <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -121,10 +118,10 @@
         <option value="$PROJECT_DIR$/lib/angular/angular.js" />
         <option value="$PROJECT_DIR$/src/command-component/cc-select.html" />
         <option value="$PROJECT_DIR$/src/test/dropDown.html" />
-        <option value="$PROJECT_DIR$/src/command-component/cmd-cmt.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/src/framework.js" />
+        <option value="$PROJECT_DIR$/src/command-component/cmd-cmt.js" />
         <option value="$PROJECT_DIR$/main.js" />
+        <option value="$PROJECT_DIR$/src/framework.js" />
       </list>
     </option>
   </component>
@@ -141,7 +138,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="526" />
     <option name="y" value="1" />
     <option name="width" value="1092" />
@@ -235,15 +232,15 @@
       <option name="presentableId" value="Default" />
       <updated>1514121637377</updated>
       <workItem from="1514121639294" duration="2823000" />
-      <workItem from="1515330175094" duration="27555000" />
+      <workItem from="1515330175094" duration="29443000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30378000" />
+    <option name="totallyTimeSpent" value="32266000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14895834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -352,17 +349,6 @@
         <state relative-caret-position="343">
           <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/command-component/cc-select.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="12" column="93" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="93" />
-          <folding>
-            <element signature="e#1598#1696#0" expanded="false" />
-            <marker date="1515596777792" expanded="true" signature="3254:3526" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1150,26 +1136,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/command-component/cc-select.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="52" column="10" lean-forward="true" selection-start-line="44" selection-start-column="8" selection-end-line="52" selection-end-column="10" />
+          <folding>
+            <element signature="e#1598#1696#0" expanded="false" />
+            <marker date="1515596777792" expanded="true" signature="3254:3526" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="1" column="40" lean-forward="false" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
+        <state relative-caret-position="60">
+          <caret line="2" column="3" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/command-component/cmd-cmt.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="2" column="46" lean-forward="true" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
+        <state relative-caret-position="30">
+          <caret line="1" column="50" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/framework.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+        <state relative-caret-position="540">
+          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
           <folding />
         </state>
       </provider>

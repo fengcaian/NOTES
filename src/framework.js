@@ -1,5 +1,5 @@
-define([''], ['command-component'], function (cc) {
-   var module = angular.module('framework',['cc.name']);
+define(['src/command-component/cmd-cmt'], function (cc) {
+   var module = angular.module('framework',[cc.name]);
    module.controller('myController', ['$scope', function ($scope) {
        $scope.balls = {
            placeholder: '-- 请选择 --',

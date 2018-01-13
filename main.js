@@ -1,3 +1,3 @@
 require(['src/framework'], function (framework) {
-    angular.bootstrap('html', [framework]);
+    angular.bootstrap('html', [framework.name]);
 });

@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="./theme/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="theme/bootstrap/bootstrap.css">
     <script src="lib/require.js"></script>
     <script src="lib/jquery/jquery-1.9.1.js"></script>
     <script src="lib/bootstrap/bootstrap.js"></script>
     <script src="lib/angular/angular.js"></script>
-    <!--<script src="src/command-component/cmd-cmt.js"></script>-->
     <script src="main.js"></script>
 </head>
 <body ng-controller="myController">
-    <cc-select option="balls.option" change="balls.change" disabled="balls.disabled"></cc-select>
+    <cc-select option="balls.option" column="balls.column" selectedId="balls.selectedId" change="balls.change" disabled="balls.disabled"></cc-select>
+    <cc-button option="btn"></cc-button>
 </body>
 </html>

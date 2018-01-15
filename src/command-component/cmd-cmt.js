@@ -41,11 +41,11 @@ define([''], function (){
             }
         }
     });
-    module.directive('ccButton' ,function () {
+    module.directive('ccButton', function () {
         return {
             restrict: 'E',
             replace: true,
-            template: '<button type="{{option.type}}" class="btn btn-{{option.bClass}} btn-{{option.size}}">{{option.value}}</button>',
+            template: '<button type="{{option.type}}" class="btn btn-{{option.buttonClass}} btn-{{option.size}}">{{option.value}}</button>',
             scope: {
                 option: '='
             },
@@ -54,6 +54,20 @@ define([''], function (){
                 element.bind('click', function (e){
                     scope.option.click && scope.option.click.call(this, e);
                 })
+            }
+        }
+    });
+    module.directive('cc-dropdown', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            template: '<div class="{{direction}}"><button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></div>',
+            scope: {
+                direction: '='
+            },
+            link: function (scope, element) {
+                var direction = ['dropdown', 'dropup'];
+                scope.direction = direction.indexOf(scope.direction) > -1 ? scope.direction : direction[0];
             }
         }
     });

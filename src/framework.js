@@ -31,7 +31,7 @@ define(['src/command-component/cmd-cmt'], function (cc) {
        };
        $scope.btn = {
            type: 'button',
-           bClass: 'primary',
+           buttonClass: 'primary',
            size: 'lg',
            value: '按钮',
            disabled: false,

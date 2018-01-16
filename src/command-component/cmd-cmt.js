@@ -57,17 +57,47 @@ define([''], function (){
             }
         }
     });
-    module.directive('cc-dropdown', function () {
+    module.directive('ccDropdown', function () {
         return {
             restrict: 'E',
             replace: true,
-            template: '<div class="{{direction}}"><button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></div>',
+            template: '<div style="margin-left: 100px" class="{{direction}}"><button class="btn btn-{{buttonclass}} dropdown-toggle" type="button" id="cc-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span ng-bind="menutitle"></span><span class="caret"></span></button>' +
+            '<ul class="dropdown-menu" aria-labelledby="cc-dropdown"></ul>' +
+            '</div>',
             scope: {
-                direction: '='
+                direction: '=',
+                menutitle: '=',
+                menuitems: '=',
+                buttonclass: '='
             },
             link: function (scope, element) {
                 var direction = ['dropdown', 'dropup'];
                 scope.direction = direction.indexOf(scope.direction) > -1 ? scope.direction : direction[0];
+                var ul = angular.element(element).find('ul');
+                var items = scope.menuitems;
+                for (var i=0,l=items.length; i<l; i++) {
+                    var li = document.createElement('li');
+                    if (items[i].type === 'action') {
+                        var a = document.createElement('a');
+                        a.href='#';
+                        a.className = items[i].className;
+                        a.innerHTML = items[i].label;
+                        li.onclick = (function (i) {
+                            return function (e) {
+                                items[i].click.call(this, e);
+                            }
+                        })(i);
+                        li.append(a);
+                    } else if (items[i].type === 'divider') {
+                        li.role = 'separator';
+                        li.className = 'divider';
+                    } else if (items[i].type === 'header') {
+                        li.className = 'dropdown-header '+ items[i].className;
+                        li.innerHTML = items[i].label;
+                    }
+                    ul[0].append(li);
+                }
+
             }
         }
     });

@@ -39,6 +39,51 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                console.log(this.type);
                console.log(e);
            }
+       };
+       $scope.dropdown = {
+           direction: 'dropdown',
+           menuTitle: 'Dropdown',
+           menuItems: [{
+               type: 'action',
+               label: 'action1',
+               className: '',
+               click: function (e) {
+                   console.log(1);
+               }
+           },{
+               type: 'header',
+               label: 'header1'
+           },{
+               type: 'action',
+               label: 'action2',
+               click: function (e) {
+                   console.log(2);
+               }
+           },{
+               type: 'action',
+               label: 'action3',
+               click: function (e) {
+                   console.log(3);
+               }
+           },{
+               type: 'divider'
+           },{
+               type: 'header',
+               label: 'header1'
+           },{
+               type: 'action',
+               label: 'action2',
+               click: function (e) {
+                   console.log(4);
+               }
+           },{
+               type: 'action',
+               label: 'action3',
+               click: function (e) {
+                   console.log(5);
+               }
+           }],
+           buttonClass: 'primary'
        }
    }]);
    return module;

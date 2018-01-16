@@ -47,6 +47,7 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                type: 'action',
                label: 'action1',
                className: '',
+               disabled: true,
                click: function (e) {
                    console.log(1);
                }
@@ -69,16 +70,17 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                type: 'divider'
            },{
                type: 'header',
-               label: 'header1'
+               label: 'header2'
            },{
                type: 'action',
-               label: 'action2',
+               label: 'action4',
+               disabled: true,
                click: function (e) {
                    console.log(4);
                }
            },{
                type: 'action',
-               label: 'action3',
+               label: 'action5',
                click: function (e) {
                    console.log(5);
                }

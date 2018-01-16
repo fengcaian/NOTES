@@ -78,10 +78,12 @@ define([''], function (){
                 for (var i=0,l=items.length; i<l; i++) {
                     var li = document.createElement('li');
                     if (items[i].type === 'action') {
-                        var a = document.createElement('a');
+                        var a = document.createElement('a'),
+                        className = items[i].className ? items[i].className : '';
+                        items[i].disabled && (className += 'disabled');
                         a.href='#';
-                        a.className = items[i].className;
                         a.innerHTML = items[i].label;
+                        li.className = className;
                         li.onclick = (function (i) {
                             return function (e) {
                                 items[i].click.call(this, e);

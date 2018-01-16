@@ -61,18 +61,20 @@ define([''], function (){
         return {
             restrict: 'E',
             replace: true,
-            template: '<div style="margin-left: 100px" class="{{direction}}"><button class="btn btn-{{buttonclass}} dropdown-toggle" type="button" id="cc-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span ng-bind="menutitle"></span><span class="caret"></span></button>' +
+            template: '<div style="margin-left: 100px" class="{{direction}}"><button class="btn btn-{{buttonclass}}{{size}} dropdown-toggle" type="button" id="cc-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span ng-bind="menutitle"></span><span class="caret"></span></button>' +
             '<ul class="dropdown-menu" aria-labelledby="cc-dropdown"></ul>' +
             '</div>',
             scope: {
                 direction: '=',
                 menutitle: '=',
                 menuitems: '=',
-                buttonclass: '='
+                buttonclass: '=',
+                size: '='
             },
             link: function (scope, element) {
                 var direction = ['dropdown', 'dropup'];
                 scope.direction = direction.indexOf(scope.direction) > -1 ? scope.direction : direction[0];
+                scope.size = scope.size ? ' btn-'+scope.size : '';
                 var ul = angular.element(element).find('ul');
                 var items = scope.menuitems;
                 for (var i=0,l=items.length; i<l; i++) {

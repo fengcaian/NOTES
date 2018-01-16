@@ -43,6 +43,8 @@ define(['src/command-component/cmd-cmt'], function (cc) {
        $scope.dropdown = {
            direction: 'dropdown',
            menuTitle: 'Dropdown',
+           buttonClass: 'primary',
+           size: 'lg',
            menuItems: [{
                type: 'action',
                label: 'action1',
@@ -85,7 +87,7 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                    console.log(5);
                }
            }],
-           buttonClass: 'primary'
+
        }
    }]);
    return module;

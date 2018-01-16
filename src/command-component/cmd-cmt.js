@@ -82,15 +82,20 @@ define([''], function (){
                     if (items[i].type === 'action') {
                         var a = document.createElement('a'),
                         className = items[i].className ? items[i].className : '';
-                        items[i].disabled && (className += 'disabled');
-                        a.href='#';
+                        if (items[i].disabled) {//li添加disabled的class,且让a标签失效（去掉其href）
+                            className += 'disabled';
+                            a.href = '#';
+                        } else {
+                            a.href = items[i].url ? items[i].url : '#';
+                            items[i].target && (a.target = items[i].target);
+                        }
                         a.innerHTML = items[i].label;
                         li.className = className;
-                        li.onclick = (function (i) {
+                        items[i].click && (li.onclick = (function (i) {
                             return function (e) {
                                 items[i].click.call(this, e);
                             }
-                        })(i);
+                        })(i));
                         li.append(a);
                     } else if (items[i].type === 'divider') {
                         li.role = 'separator';

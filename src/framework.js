@@ -50,6 +50,8 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                label: 'action1',
                className: '',
                disabled: true,
+               url: 'www.baidu.com',
+               target: '_self',
                click: function (e) {
                    console.log(1);
                }
@@ -65,6 +67,8 @@ define(['src/command-component/cmd-cmt'], function (cc) {
            },{
                type: 'action',
                label: 'action3',
+               url: 'www.taobao.com',
+               target: '_blank',
                click: function (e) {
                    console.log(3);
                }

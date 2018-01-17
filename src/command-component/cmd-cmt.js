@@ -110,5 +110,22 @@ define([''], function (){
             }
         }
     });
+    module.directive('ccTable', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            template: '<table class="table">' +
+            '<tr><th ng-repeat="col in columns">{{col.label}}</th></tr>' +
+            '<tr ng-repeat="data in datas"><td ng-repeat="d in data"></td></tr>' +
+            '</table>',
+            scope: {
+                datas: '=',
+                columns: '='
+            },
+            link: function (scope, element) {
+
+            }
+        }
+    });
     return module;
 });

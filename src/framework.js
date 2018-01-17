@@ -90,8 +90,47 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                click: function (e) {
                    console.log(5);
                }
-           }],
-
+           }]
+       };
+       var tableColumns = [
+           {
+               label: 'name'
+           },
+           {
+               label: 'age'
+           },
+           {
+               label: 'gender'
+           },
+           {
+               label: 'address'
+           },
+           {
+               label: 'operator'
+           }
+       ];
+       $scope.tableData = {
+           data: [
+               {
+                   name: 'xiaoming',
+                   age: 11,
+                   gender: 'male',
+                   address: 'China'
+               },
+               {
+                   name: 'xiaohua',
+                   age: 12,
+                   gender: 'female',
+                   address: 'China'
+               },
+               {
+                   name: 'xiaohong',
+                   age: 13,
+                   gender: 'female',
+                   address: 'China'
+               }
+           ],
+           columns: tableColumns
        }
    }]);
    return module;

@@ -16,8 +16,13 @@
 <cc-dropdown direction="dropdown.direction" size="dropdown.size" menutitle="dropdown.menuTitle" menuitems="dropdown.menuItems" buttonclass="dropdown.buttonClass"></cc-dropdown>
 <cc-table datas="tableData.data" columns="tableData.columns"></cc-table>
 <cc-tree data="treeData.data" isopen="treeData.isOpen">
-    <table>
-        
+    <table class="table">
+        <tr>
+            <th ng-repeat="col in treeData.columns">{{col.label}}</th>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
     </table>
 </cc-tree>
 </body>

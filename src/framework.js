@@ -94,6 +94,9 @@ define(['src/command-component/cmd-cmt'], function (cc) {
        };
        var tableColumns = [
            {
+               label: 'id'
+           },
+           {
                label: 'name'
            },
            {
@@ -112,18 +115,21 @@ define(['src/command-component/cmd-cmt'], function (cc) {
        $scope.tableData = {
            data: [
                {
+                   id: 1,
                    name: 'xiaoming',
                    age: 11,
                    gender: 'male',
                    address: 'China'
                },
                {
+                   id: 2,
                    name: 'xiaohua',
                    age: 12,
                    gender: 'female',
                    address: 'China'
                },
                {
+                   id: 3,
                    name: 'xiaohong',
                    age: 13,
                    gender: 'female',
@@ -139,6 +145,7 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                    name: 'xiaoming',
                    age: 10,
                    gender: 'male',
+                   address: 'China',
                    children: [
                        {
                            id: 2,
@@ -183,7 +190,8 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                    gender: 'male'
                }
            ],
-           isOpen: true
+           isOpen: true,
+           columns: tableColumns
        }
    }]);
    return module;

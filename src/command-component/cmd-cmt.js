@@ -1,5 +1,10 @@
 define([''], function (){
     var module = angular.module('command-component',[]);
+    /*module.service('deepCopy', function () {
+        var _deepCopy = function (data) {
+
+        }
+    });*/
     module.directive('ccSelect', function () {
         return {
             restrict: 'E',
@@ -121,6 +126,37 @@ define([''], function (){
             scope: {
                 datas: '=',
                 columns: '='
+            },
+            link: function (scope, element) {
+
+            }
+        }
+    });
+    module.directive('ccTree', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            template: '',
+            scope: {
+                data: '=',
+                isOpen: '=isopen'
+            },
+            controller: function ($scope) {
+                $scope.treeNodes = [];
+                function _getTreeNodesFromData (data, p) {
+                    for (var i = 0, l = data.length; i < l; i ++) {
+                        var node = JSON.parse(JSON.stringify(data[i]));
+                        node.pId = p ? p : 'root';
+                        node.isOpen = $scope.isOpen;
+                        delete node.children;
+                        $scope.treeNodes.push(node);
+                        if (data[i].children && data[i].children.length > 0) {
+                            _getTreeNodesFromData(data[i].children, data[i].id);
+                        }
+                    }
+                }
+                Array.isArray($scope.data) && _getTreeNodesFromData($scope.data);
+                console.log($scope.treeNodes)
             },
             link: function (scope, element) {
 

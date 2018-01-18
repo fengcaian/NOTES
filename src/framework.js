@@ -132,6 +132,59 @@ define(['src/command-component/cmd-cmt'], function (cc) {
            ],
            columns: tableColumns
        }
+       $scope.treeData = {
+           data: [
+               {
+                   id: 1,
+                   name: 'xiaoming',
+                   age: 10,
+                   gender: 'male',
+                   children: [
+                       {
+                           id: 2,
+                           name: 'xiaoming',
+                           age: 20,
+                           gender: 'male',
+                           children: [
+                               {
+                                   id: 3,
+                                   name: 'xiaoming',
+                                   age: 30,
+                                   gender: 'male'
+                               }
+                           ]
+                       },
+                       {
+                           id: 4,
+                           name: 'xiaoming',
+                           age: 40,
+                           gender: 'male'
+                       }
+                   ]
+               },
+               {
+                   id: 5,
+                   name: 'xiaoming',
+                   age: 50,
+                   gender: 'male',
+                   children: [
+                       {
+                           id: 6,
+                           name: 'xiaoming',
+                           age: 60,
+                           gender: 'male'
+                       }
+                   ]
+               },
+               {
+                   id: 7,
+                   name: 'xiaoming',
+                   age: 70,
+                   gender: 'male'
+               }
+           ],
+           isOpen: true
+       }
    }]);
    return module;
 });

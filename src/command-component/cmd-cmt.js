@@ -136,9 +136,17 @@ define([''], function (){
         return {
             restrict: 'E',
             replace: true,
-            template: '',
+            template: '<table class="table">' +
+            '<tr><th ng-repeat="col in columns">{{col.label}}</th></tr>' +
+            '<tr ng-repeat="data in treeNodes track by $index">' +
+            '<td ng-repeat="key in columnOrder">' +
+            '<span ng-show="$index === 0" class="glyphicon glyphicon-triangle-right" ng-click="toggleClick()"></span>' +
+            '{{data[key]}}</td>' +
+            '</tr>' +
+            '</table>',
             scope: {
                 data: '=',
+                columns: '=',
                 isOpen: '=isopen'
             },
             controller: function ($scope) {
@@ -156,10 +164,17 @@ define([''], function (){
                     }
                 }
                 Array.isArray($scope.data) && _getTreeNodesFromData($scope.data);
-                console.log($scope.treeNodes)
+                console.log($scope.treeNodes);
+                $scope.columnOrder = [];
+                for (var j = 0, m = $scope.columns.length; j < m; j ++) {
+                    $scope.columnOrder.push($scope.columns[j].key);
+                }
             },
             link: function (scope, element) {
+                console.log(1);
+                scope.toggleClick = function () {
 
+                }
             }
         }
     });

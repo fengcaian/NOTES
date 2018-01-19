@@ -94,22 +94,28 @@ define(['src/command-component/cmd-cmt'], function (cc) {
        };
        var tableColumns = [
            {
-               label: 'id'
+               label: 'id',
+               key: 'id'
            },
            {
-               label: 'name'
+               label: 'name',
+               key: 'name'
            },
            {
-               label: 'age'
+               label: 'age',
+               key: 'age'
            },
            {
-               label: 'gender'
+               label: 'gender',
+               key: 'gender'
            },
            {
-               label: 'address'
+               label: 'address',
+               key: 'address'
            },
            {
-               label: 'operator'
+               label: 'operator',
+               key: 'operator'
            }
        ];
        $scope.tableData = {
@@ -137,7 +143,7 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                }
            ],
            columns: tableColumns
-       }
+       };
        $scope.treeData = {
            data: [
                {

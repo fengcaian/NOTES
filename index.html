@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="theme/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="theme/bootstrap/css/bootstrap.css">
     <script src="lib/require.js"></script>
     <script src="lib/jquery/jquery-1.9.1.js"></script>
     <script src="lib/bootstrap/bootstrap.js"></script>
@@ -15,15 +15,15 @@
 <cc-button option="btn"></cc-button>
 <cc-dropdown direction="dropdown.direction" size="dropdown.size" menutitle="dropdown.menuTitle" menuitems="dropdown.menuItems" buttonclass="dropdown.buttonClass"></cc-dropdown>
 <cc-table datas="tableData.data" columns="tableData.columns"></cc-table>
-<cc-tree data="treeData.data" isopen="treeData.isOpen">
-    <table class="table">
+<cc-tree data="treeData.data" isopen="treeData.isOpen" columns="treeData.columns">
+    <!--<table class="table">
         <tr>
             <th ng-repeat="col in treeData.columns">{{col.label}}</th>
         </tr>
-        <tr>
+        <tr ng-repeat="trData in treeData.">
             <td></td>
         </tr>
-    </table>
+    </table>-->
 </cc-tree>
 </body>
 </html>

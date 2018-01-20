@@ -136,11 +136,13 @@ define([''], function (){
         return {
             restrict: 'E',
             replace: true,
-            template: '<table class="table">' +
+            template: '<table class="table table-bordered">' +
             '<tr><th ng-repeat="col in columns">{{col.label}}</th></tr>' +
-            '<tr ng-repeat="data in treeNodes track by $index">' +
-            '<td ng-repeat="key in columnOrder">' +
-            '<span ng-show="$index === 0" class="glyphicon glyphicon-triangle-right" ng-click="toggleClick()"></span>' +
+            '<tr ng-repeat="data in treeNodes">' +
+            '<td ng-repeat="key in columnOrder track by $index">' +
+            '<span ng-show="$index === 0" style="margin-left: {{data.level*30}}px"></span>' +
+            '<span ng-show="$index === 0 && data.hasChildren" class="glyphicon glyphicon-triangle-right" ng-click="toggleClick($event, data)"></span>' +
+            '<span ng-show="$index === 0 && !data.hasChildren" style="margin-left: 14px"></span>' +
             '{{data[key]}}</td>' +
             '</tr>' +
             '</table>',
@@ -151,15 +153,17 @@ define([''], function (){
             },
             controller: function ($scope) {
                 $scope.treeNodes = [];
-                function _getTreeNodesFromData (data, p) {
+                function _getTreeNodesFromData (data, p, le) {
                     for (var i = 0, l = data.length; i < l; i ++) {
                         var node = JSON.parse(JSON.stringify(data[i]));
                         node.pId = p ? p : 'root';
+                        node.level = le ? le : 0;
+                        node.hasChildren = !!(data[i].children && data[i].children.length);
                         node.isOpen = $scope.isOpen;
                         delete node.children;
                         $scope.treeNodes.push(node);
                         if (data[i].children && data[i].children.length > 0) {
-                            _getTreeNodesFromData(data[i].children, data[i].id);
+                            _getTreeNodesFromData(data[i].children, data[i].id, node.level+1);
                         }
                     }
                 }
@@ -172,8 +176,8 @@ define([''], function (){
             },
             link: function (scope, element) {
                 console.log(1);
-                scope.toggleClick = function () {
-
+                scope.toggleClick = function (e, d) {
+                    d.isOpen = false;
                 }
             }
         }

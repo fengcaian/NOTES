@@ -193,7 +193,8 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                    id: 7,
                    name: 'xiaoming',
                    age: 70,
-                   gender: 'male'
+                   gender: 'male',
+                   children: []
                }
            ],
            isOpen: true,

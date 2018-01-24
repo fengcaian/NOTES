@@ -141,7 +141,7 @@ define([''], function (){
             '<tr ng-show="data.isOpen" ng-repeat="data in treeNodes">' +
             '<td ng-repeat="key in columnOrder track by $index">' +
             '<span ng-show="$index === 0" style="margin-left: {{data.level*30}}px"></span>' +
-            '<span ng-show="$index === 0 && data.hasChildren" ng-class="{true:'+"'glyphicon glyphicon-triangle-bottom'"+",false:"+"'glyphicon glyphicon-triangle-right'}[data.isOpen]" +'" ng-click="toggleClick($event, data)"></span>' +
+            '<span ng-show="$index === 0 && data.hasChildren" ng-class="{true:'+"'glyphicon glyphicon-triangle-bottom'"+",false:"+"'glyphicon glyphicon-triangle-right'}[!isClick && data.isOpen]" +'" ng-click="toggleClick($event, data)"></span>' +
             '<span ng-show="$index === 0 && !data.hasChildren" style="margin-left: 14px"></span>' +
             '{{data[key]}}{{data.isOpen}}</td>' +
             '</tr>' +
@@ -176,7 +176,7 @@ define([''], function (){
             },
             link: function (scope, element) {
                 scope.toggleClick = function (e, node) {
-                    node.isOpen = !node.isOpen;
+                    //scope.isClick = !scope.isClick;
                     var hiddenNodes = [];
                     function _recursiveHandle(childrenNodes){
                         for (var i = 0, l = childrenNodes.length; i < l; i ++) {

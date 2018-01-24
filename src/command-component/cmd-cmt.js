@@ -132,18 +132,18 @@ define([''], function (){
             }
         }
     });
-    module.directive('ccTree', function () {
+    module.directive('ccTree', function ($timeout) {
         return {
             restrict: 'E',
             replace: true,
             template: '<table class="table table-bordered">' +
             '<tr><th ng-repeat="col in columns">{{col.label}}</th></tr>' +
-            '<tr ng-repeat="data in treeNodes">' +
+            '<tr id="{{data.id}}" ng-repeat="data in treeNodes">' +
             '<td ng-repeat="key in columnOrder track by $index">' +
             '<span ng-show="$index === 0" style="margin-left: {{data.level*30}}px"></span>' +
-            '<span ng-show="$index === 0 && data.hasChildren" class="glyphicon glyphicon-triangle-right" ng-click="toggleClick($event, data)"></span>' +
+            '<span ng-show="$index === 0 && data.hasChildren" ng-class="{true:'+"'glyphicon glyphicon-triangle-right'"+",false:"+"'glyphicon glyphicon-triangle-bottom'}[{{data.isOpen}}]" +'" ng-click="toggleClick($event, data)"></span>' +
             '<span ng-show="$index === 0 && !data.hasChildren" style="margin-left: 14px"></span>' +
-            '{{data[key]}}</td>' +
+            '{{data[key]}}{{data.isOpen}}</td>' +
             '</tr>' +
             '</table>',
             scope: {
@@ -160,7 +160,7 @@ define([''], function (){
                         node.level = le ? le : 0;
                         node.hasChildren = !!(data[i].children && data[i].children.length);
                         node.isOpen = $scope.isOpen;
-                        delete node.children;
+                        //delete node.children;
                         $scope.treeNodes.push(node);
                         if (data[i].children && data[i].children.length > 0) {
                             _getTreeNodesFromData(data[i].children, data[i].id, node.level+1);
@@ -175,9 +175,26 @@ define([''], function (){
                 }
             },
             link: function (scope, element) {
-                console.log(1);
                 scope.toggleClick = function (e, d) {
-                    d.isOpen = false;
+                    d.isOpen = !d.isOpen;
+                    var childrenNum = d.children.length;
+                    var hidedTr =e.currentTarget.parentNode.parentNode;
+                    var n = 0;
+                    function _recursiveHandle(children, tr){
+
+                        for (var i = 0, l = children.length; i < l; i ++) {
+                            t = tr.nextElementSibling;
+                            console.log(t.id);
+                            t.style.display = d.isOpen ? '' : 'none';
+                            n += 1;
+                            if (children[i].children) {
+                                _recursiveHandle(children[i].children, t);
+                            }
+                        }
+                    }
+                    _recursiveHandle(d.children, hidedTr);
+                    console.log(n);
+                    d.address = 'asd';
                 }
             }
         }

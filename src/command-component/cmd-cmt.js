@@ -138,10 +138,10 @@ define([''], function (){
             replace: true,
             template: '<table class="table table-bordered">' +
             '<tr><th ng-repeat="col in columns">{{col.label}}</th></tr>' +
-            '<tr id="{{data.id}}" ng-repeat="data in treeNodes">' +
+            '<tr ng-show="data.isOpen" ng-repeat="data in treeNodes">' +
             '<td ng-repeat="key in columnOrder track by $index">' +
             '<span ng-show="$index === 0" style="margin-left: {{data.level*30}}px"></span>' +
-            '<span ng-show="$index === 0 && data.hasChildren" ng-class="{true:'+"'glyphicon glyphicon-triangle-right'"+",false:"+"'glyphicon glyphicon-triangle-bottom'}[{{data.isOpen}}]" +'" ng-click="toggleClick($event, data)"></span>' +
+            '<span ng-show="$index === 0 && data.hasChildren" ng-class="{true:'+"'glyphicon glyphicon-triangle-bottom'"+",false:"+"'glyphicon glyphicon-triangle-right'}[data.isOpen]" +'" ng-click="toggleClick($event, data)"></span>' +
             '<span ng-show="$index === 0 && !data.hasChildren" style="margin-left: 14px"></span>' +
             '{{data[key]}}{{data.isOpen}}</td>' +
             '</tr>' +
@@ -153,7 +153,7 @@ define([''], function (){
             },
             controller: function ($scope) {
                 $scope.treeNodes = [];
-                function _getTreeNodesFromData (data, p, le) {
+                function _getTreeNodesFromData (data, p, le) {//源数据，父ID，层级
                     for (var i = 0, l = data.length; i < l; i ++) {
                         var node = JSON.parse(JSON.stringify(data[i]));
                         node.pId = p ? p : 'root';
@@ -175,26 +175,24 @@ define([''], function (){
                 }
             },
             link: function (scope, element) {
-                scope.toggleClick = function (e, d) {
-                    d.isOpen = !d.isOpen;
-                    var childrenNum = d.children.length;
-                    var hidedTr =e.currentTarget.parentNode.parentNode;
-                    var n = 0;
-                    function _recursiveHandle(children, tr){
-
-                        for (var i = 0, l = children.length; i < l; i ++) {
-                            t = tr.nextElementSibling;
-                            console.log(t.id);
-                            t.style.display = d.isOpen ? '' : 'none';
-                            n += 1;
-                            if (children[i].children) {
-                                _recursiveHandle(children[i].children, t);
+                scope.toggleClick = function (e, node) {
+                    node.isOpen = !node.isOpen;
+                    var hiddenNodes = [];
+                    function _recursiveHandle(childrenNodes){
+                        for (var i = 0, l = childrenNodes.length; i < l; i ++) {
+                            hiddenNodes.push(childrenNodes[i].id);
+                            childrenNodes[i].children && _recursiveHandle(childrenNodes[i].children);
+                        }
+                    }
+                    _recursiveHandle(node.children);
+                    for (var m = 0, tnLength = scope.treeNodes.length; m < tnLength; m ++) {
+                        for (var n = 0, hnLength = hiddenNodes.length; n < hnLength; n ++) {
+                            if (scope.treeNodes[m].id === hiddenNodes[n]) {
+                                scope.treeNodes[m].isOpen = !scope.treeNodes[m].isOpen;
                             }
                         }
                     }
-                    _recursiveHandle(d.children, hidedTr);
-                    console.log(n);
-                    d.address = 'asd';
+                    console.log(scope.treeNodes);
                 }
             }
         }

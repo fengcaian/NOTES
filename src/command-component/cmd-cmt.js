@@ -138,10 +138,10 @@ define([''], function (){
             replace: true,
             template: '<table class="table table-bordered">' +
             '<tr><th ng-repeat="col in columns">{{col.label}}</th></tr>' +
-            '<tr ng-show="data.isOpen" ng-repeat="data in treeNodes">' +
+            '<tr ng-show="data.isShow" ng-repeat="data in treeNodes">' +
             '<td ng-repeat="key in columnOrder track by $index">' +
             '<span ng-show="$index === 0" style="margin-left: {{data.level*30}}px"></span>' +
-            '<span ng-show="$index === 0 && data.hasChildren" ng-class="{true:'+"'glyphicon glyphicon-triangle-bottom'"+",false:"+"'glyphicon glyphicon-triangle-right'}[data.isOpen && !isClick]" +'" ng-click="toggleClick($event, data)"></span>' +
+            '<span ng-show="$index === 0 && data.hasChildren" ng-class="{true:'+"'glyphicon glyphicon-triangle-bottom'"+",false:"+"'glyphicon glyphicon-triangle-right'}[data.isExpand]" +'" ng-click="toggleClick($event, data)"></span>' +
             '<span ng-show="$index === 0 && !data.hasChildren" style="margin-left: 14px"></span>' +
             '{{data[key]}}{{data.isOpen}}</td>' +
             '</tr>' +
@@ -158,11 +158,11 @@ define([''], function (){
                         var node = JSON.parse(JSON.stringify(data[i]));
                         node.pId = p ? p : 'root';
                         node.level = le ? le : 0;
-                        node.hasChildren = !!(data[i].children && data[i].children.length);
-                        node.isOpen = $scope.isOpen;
-                        //delete node.children;
+                        node.isShow = $scope.isOpen;
                         $scope.treeNodes.push(node);
                         if (data[i].children && data[i].children.length > 0) {
+                            node.hasChildren = true;
+                            node.isExpand = $scope.isOpen;
                             _getTreeNodesFromData(data[i].children, data[i].id, node.level+1);
                         }
                     }
@@ -176,23 +176,21 @@ define([''], function (){
             },
             link: function (scope, element) {
                 scope.toggleClick = function (e, node) {
-                    scope.isClick = !scope.isClick;
-                    var hiddenNodes = [];
-                    function _recursiveHandle(childrenNodes){
-                        for (var i = 0, l = childrenNodes.length; i < l; i ++) {
-                            hiddenNodes.push(childrenNodes[i].id);
-                            childrenNodes[i].children && _recursiveHandle(childrenNodes[i].children);
-                        }
-                    }
-                    _recursiveHandle(node.children);
-                    for (var m = 0, tnLength = scope.treeNodes.length; m < tnLength; m ++) {
-                        for (var n = 0, hnLength = hiddenNodes.length; n < hnLength; n ++) {
-                            if (scope.treeNodes[m].id === hiddenNodes[n]) {
-                                scope.treeNodes[m].isOpen = !scope.treeNodes[m].isOpen;
+                    node.isExpand = !node.isExpand;
+                    function _toggle(data, pId, pExpand) {
+                        var n;
+                        for (var i=0,l=data.length;i<l;i++) {
+                            n = data[i];
+                            if (n.pId === pId) {
+                                n.isShow = pExpand;
+                                if (!pExpand) {
+                                    n.isExpand = pExpand;
+                                    _toggle(scope.treeNodes, n.id, false);
+                                }
                             }
                         }
                     }
-                    console.log(scope.treeNodes);
+                    _toggle(scope.treeNodes, node.id, node.isExpand);
                 }
             }
         }

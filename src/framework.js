@@ -95,27 +95,33 @@ define(['src/command-component/cmd-cmt'], function (cc) {
        var tableColumns = [
            {
                label: 'id',
-               key: 'id'
+               key: 'id',
+               width: '10%'
            },
            {
                label: 'name',
-               key: 'name'
+               key: 'name',
+               width: '20%'
            },
            {
                label: 'age',
-               key: 'age'
+               key: 'age',
+               width: '10%'
            },
            {
                label: 'gender',
-               key: 'gender'
+               key: 'gender',
+               width: '10%'
            },
            {
                label: 'address',
-               key: 'address'
+               key: 'address',
+               width: '30%'
            },
            {
                label: 'operator',
-               key: 'operator'
+               key: 'operator',
+               width: '20%'
            }
        ];
        $scope.tableData = {
@@ -198,7 +204,20 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                }
            ],
            isOpen: true,
-           columns: tableColumns
+           columns: tableColumns,
+           tableClass: 'table-condensed table-hover',
+           trClass: '',
+           columnActions: [
+               {
+                   label: '添加节点',
+                   click: function (e, data) {
+
+                   }
+               },
+               {
+                   label: '删除节点'
+               }
+           ]
        }
    }]);
    return module;

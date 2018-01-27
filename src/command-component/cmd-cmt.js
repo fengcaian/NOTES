@@ -136,9 +136,9 @@ define([''], function (){
         return {
             restrict: 'E',
             replace: true,
-            template: '<table class="table table-bordered">' +
-            '<tr><th ng-repeat="col in columns">{{col.label}}</th></tr>' +
-            '<tr ng-show="data.isShow" ng-repeat="data in treeNodes">' +
+            template: '<table class="table table-bordered {{tableClass}}">' +
+            '<tr><th ng-repeat="col in columns" style="width: {{col.width}}">{{col.label}}</th></tr>' +
+            '<tr ng-show="data.isShow" ng-repeat="data in treeNodes" class="{{data.trClass}}">' +
             '<td ng-repeat="key in columnOrder track by $index">' +
             '<span ng-show="$index === 0" style="margin-left: {{data.level*30}}px"></span>' +
             '<span ng-show="$index === 0 && data.hasChildren" ng-class="{true:'+"'glyphicon glyphicon-triangle-bottom'"+",false:"+"'glyphicon glyphicon-triangle-right'}[data.isExpand]" +'" ng-click="toggleClick($event, data)"></span>' +
@@ -149,7 +149,9 @@ define([''], function (){
             scope: {
                 data: '=',
                 columns: '=',
-                isOpen: '=isopen'
+                isOpen: '=isopen',
+                tableClass: '=tableclass',
+                trClass: '=trclass'
             },
             controller: function ($scope) {
                 $scope.treeNodes = [];
@@ -159,6 +161,7 @@ define([''], function (){
                         node.pId = p ? p : 'root';
                         node.level = le ? le : 0;
                         node.isShow = $scope.isOpen;
+                        node.trClass = $scope.trClass + ' ' + node.trClass;
                         $scope.treeNodes.push(node);
                         if (data[i].children && data[i].children.length > 0) {
                             node.hasChildren = true;
@@ -183,7 +186,7 @@ define([''], function (){
                             n = data[i];
                             if (n.pId === pId) {
                                 n.isShow = pExpand;
-                                if (!pExpand) {
+                                if (!pExpand) {//打开和关闭节点的逻辑不同
                                     n.isExpand = pExpand;
                                     _toggle(scope.treeNodes, n.id, false);
                                 }

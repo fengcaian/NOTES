@@ -32,8 +32,8 @@ define(['src/command-component/cmd-cmt'], function (cc) {
        $scope.btn = {
            type: 'button',
            buttonClass: 'primary',
-           size: 'lg',
-           value: '按钮',
+           size: '',
+           value: 'message',
            disabled: false,
            click: function (e) {
                console.log(this.type);
@@ -203,21 +203,21 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                    children: []
                }
            ],
-           isOpen: true,
+           isOpen: false,
            columns: tableColumns,
            tableClass: 'table-condensed table-hover',
            trClass: '',
            columnActions: [
                {
-                   label: '添加节点',
+                   label: '节点操作',
                    click: function (e, data) {
 
                    }
-               },
-               {
-                   label: '删除节点'
                }
            ]
+       }
+       $scope.badge = {
+           data: 12
        }
    }]);
    return module;

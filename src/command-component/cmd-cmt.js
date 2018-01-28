@@ -49,10 +49,14 @@ define([''], function (){
     module.directive('ccButton', function () {
         return {
             restrict: 'E',
-            replace: true,
-            template: '<button type="{{option.type}}" class="btn btn-{{option.buttonClass}} btn-{{option.size}}">{{option.value}}</button>',
+            replace: false,
+            transclude: true,
+            template: '<button type="{{option.type}}" class="btn btn-{{option.buttonClass}} btn-{{option.size}}">{{option.value}}' +
+            '<span ng-transclude></span>' +
+            '</button>',
             scope: {
-                option: '='
+                option: '=',
+                data: '='
             },
             link: function (scope, element) {
                 typeof scope.option.disabled === 'boolean' && scope.option.disabled && element.attr('disabled', 'disabled');
@@ -151,7 +155,8 @@ define([''], function (){
                 columns: '=',
                 isOpen: '=isopen',
                 tableClass: '=tableclass',
-                trClass: '=trclass'
+                trClass: '=trclass',
+                columnActions: '=columnaction'
             },
             controller: function ($scope) {
                 $scope.treeNodes = [];
@@ -160,7 +165,12 @@ define([''], function (){
                         var node = JSON.parse(JSON.stringify(data[i]));
                         node.pId = p ? p : 'root';
                         node.level = le ? le : 0;
-                        node.isShow = $scope.isOpen;
+                        if (node.pId === 'root') {
+                            node.isShow = true;
+                        } else {
+                            node.isShow = $scope.isOpen;
+                        }
+
                         node.trClass = $scope.trClass + ' ' + node.trClass;
                         $scope.treeNodes.push(node);
                         if (data[i].children && data[i].children.length > 0) {
@@ -195,6 +205,19 @@ define([''], function (){
                     }
                     _toggle(scope.treeNodes, node.id, node.isExpand);
                 }
+            }
+        }
+    });
+    module.directive('ccBadge', function () {//该指令可嵌套在cc-button中使用，也可单独使用
+        return {
+            restrict: 'AE',
+            replace: true,
+            template: '<span class="badge" ng-bind="{{data}}"></span>',
+            scope: {
+                data: '='
+            },
+            link: function (scope, element) {
+
             }
         }
     });

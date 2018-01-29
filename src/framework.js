@@ -209,13 +209,19 @@ define(['src/command-component/cmd-cmt'], function (cc) {
            trClass: '',
            columnActions: [
                {
-                   label: '节点操作',
+                   label: '增加',
                    click: function (e, data) {
-
+                       console.log(data);
+                   }
+               },
+               {
+                   label: '删除',
+                   click: function (e, data) {
+                       console.log(data);
                    }
                }
            ]
-       }
+       };
        $scope.badge = {
            data: 12
        }

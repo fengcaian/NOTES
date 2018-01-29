@@ -144,10 +144,10 @@ define([''], function (){
             '<tr><th ng-repeat="col in columns" style="width: {{col.width}}">{{col.label}}</th></tr>' +
             '<tr ng-show="data.isShow" ng-repeat="data in treeNodes" class="{{data.trClass}}">' +
             '<td ng-repeat="key in columnOrder track by $index">' +
-            '<span ng-show="$index === 0" style="margin-left: {{data.level*30}}px"></span>' +
+            '<span ng-show="$index === 0" style="margin-left: {{data.level * 30 }}px"></span>' +
             '<span ng-show="$index === 0 && data.hasChildren" ng-class="{true:'+"'glyphicon glyphicon-triangle-bottom'"+",false:"+"'glyphicon glyphicon-triangle-right'}[data.isExpand]" +'" ng-click="toggleClick($event, data)"></span>' +
             '<span ng-show="$index === 0 && !data.hasChildren" style="margin-left: 14px"></span>' +
-            '{{data[key]}}{{data.isOpen}}</td>' +
+            '{{data[key]}}<a style="cursor: pointer; padding: 0 10px 0 5px" ng-show="key === '+"'operator'" +'" ng-repeat="action in columnActions" ng-click="action.click($event, data)">{{action.label}}</a></td>' +
             '</tr>' +
             '</table>',
             scope: {
@@ -204,7 +204,7 @@ define([''], function (){
                         }
                     }
                     _toggle(scope.treeNodes, node.id, node.isExpand);
-                }
+                };
             }
         }
     });

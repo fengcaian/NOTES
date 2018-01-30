@@ -221,5 +221,24 @@ define([''], function (){
             }
         }
     });
+    module.directive('ccTabs', function () {
+        return {
+            restrict: 'E',
+            replace: false,
+            template: '<ul class="nav nav-tabs" role="tablist">' +
+            '<li role="presentation" class="{}" ng-repeat="t in tabs"><a href="#{{t.href}}" aria-controls="{{t.href}}" role="tab" data-toggle="tab" ng-click="click($event, t)">{{t.label}}</a></li>' +
+            '</ul>',
+            transclude: true,
+            scope: {
+
+            },
+            controller: function ($scope) {
+
+            },
+            link: function (scope ){
+
+            }
+        }
+    });
     return module;
 });

@@ -225,6 +225,34 @@ define(['src/command-component/cmd-cmt'], function (cc) {
        $scope.badge = {
            data: 12
        }
+       $scope.tabData = {
+           activeId: '',
+           tabs: [
+               {
+                   id: 1,
+                   label: 'Home',
+                   href: 'home'
+               },
+               {
+                   id: 2,
+                   label: 'Profile',
+                   href: 'profile'
+               },
+               {
+                   id: 3,
+                   label: 'Messages',
+                   href: 'messages'
+               },
+               {
+                   id: 4,
+                   label: 'Settings',
+                   href: 'settings'
+               }
+           ],
+           click: function (event, tab) {
+
+           }
+       }
    }]);
    return module;
 });

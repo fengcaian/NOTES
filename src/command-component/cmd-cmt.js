@@ -224,10 +224,8 @@ define([''], function (){
     module.directive('ccTabs', function () {
         return {
             restrict: 'E',
-            replace: false,
-            template: '<ul class="nav nav-tabs" role="tablist">' +
-            '<li role="presentation" class="{}" ng-repeat="t in tabs"><a href="#{{t.href}}" aria-controls="{{t.href}}" role="tab" data-toggle="tab" ng-click="click($event, t)">{{t.label}}</a></li>' +
-            '</ul>',
+            replace: true,
+            template: '<div><ul class="nav nav-tabs" role="tablist" ng-transclude></ul></div>',
             transclude: true,
             scope: {
 
@@ -235,8 +233,25 @@ define([''], function (){
             controller: function ($scope) {
 
             },
-            link: function (scope ){
+            link: function (scope, element, s, ctrl, transclude ){
 
+            }
+        }
+    });
+    module.directive('ccTab', function () {
+        return {
+            restrict: 'EA',
+            replace: true,
+            template: '<li role="presentation" ng-class="{true: '+"'active', false: ''"+'}[data.id === activeId]"><a href="#{{data.href}}" aria-controls="{{data.href}}" role="tab" data-toggle="tab">{{data.label}}</a></li>\n',
+            scope: {
+                data: '=',
+                activeId: '=activeid'
+            },
+            controller: function ($scope) {
+
+            },
+            link: function (scope, element) {
+                console.log(scope.activeId);
             }
         }
     });

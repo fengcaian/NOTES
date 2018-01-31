@@ -226,7 +226,7 @@ define(['src/command-component/cmd-cmt'], function (cc) {
            data: 12
        }
        $scope.tabData = {
-           activeId: '',
+           activeId: 3,
            tabs: [
                {
                    id: 1,

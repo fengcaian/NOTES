@@ -153,10 +153,10 @@ define([''], function (){
             scope: {
                 data: '=',
                 columns: '=',
-                isOpen: '=isopen',
-                tableClass: '=tableclass',
-                trClass: '=trclass',
-                columnActions: '=columnaction'
+                isOpen: '=isOpen',
+                tableClass: '=tableClass',
+                trClass: '=trClass',
+                columnActions: '=columnAction'
             },
             controller: function ($scope) {
                 $scope.treeNodes = [];
@@ -242,10 +242,10 @@ define([''], function (){
         return {
             restrict: 'EA',
             replace: true,
-            template: '<li role="presentation" ng-class="{true: '+"'active', false: ''"+'}[data.id === activeId]"><a href="#{{data.href}}" aria-controls="{{data.href}}" role="tab" data-toggle="tab">{{data.label}}</a></li>\n',
+            template: '<li role="presentation" ng-class="{true: '+"'active', false: ''"+'}[data.id === activeId]"><a href="#{{data.href}}" aria-controls="{{data.href}}" role="tab" data-toggle="tab" ng-click="">{{data.label}}</a></li>\n',
             scope: {
                 data: '=',
-                activeId: '=activeid'
+                activeId: '=activeId'
             },
             controller: function ($scope) {
 

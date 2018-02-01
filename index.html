@@ -11,11 +11,11 @@
     <script src="main.js"></script>
 </head>
 <body ng-controller="myController">
-<cc-select option="balls.option" column="balls.column" selectedId="balls.selectedId" change="balls.change" disabled="balls.disabled"></cc-select>
+<cc-select option="balls.option" column="balls.column" selected-id="balls.selectedId" change="balls.change" disabled="balls.disabled"></cc-select>
 <cc-button option="btn"></cc-button>
 <cc-dropdown direction="dropdown.direction" size="dropdown.size" menutitle="dropdown.menuTitle" menuitems="dropdown.menuItems" buttonclass="dropdown.buttonClass"></cc-dropdown>
 <cc-table datas="tableData.data" columns="tableData.columns"></cc-table>
-<cc-tree data="treeData.data" isopen="treeData.isOpen" columns="treeData.columns" tableclass="treeData.tableClass" trclass="treeData.trClass" columnaction="treeData.columnActions">
+<cc-tree data="treeData.data" is-open="treeData.isOpen" columns="treeData.columns" table-class="treeData.tableClass" tr-class="treeData.trClass" column-action="treeData.columnActions">
 </cc-tree>
 <cc-button option="btn">
     <cc-badge data="badge.data"></cc-badge>
@@ -25,8 +25,7 @@
 </button>
 <cc-badge data="badge.data"></cc-badge>
 <cc-tabs>
-    <cc-tab ng-repeat="tab in tabData.tabs" data="tab" activeid="tabData.activeId"></cc-tab>
+    <cc-tab ng-repeat="tab in tabData.tabs" data="tab" active-id="tabData.activeId" ></cc-tab>
 </cc-tabs>
-<hello><div>123</div></hello>
 </body>
 </html>

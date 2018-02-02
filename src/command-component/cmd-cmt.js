@@ -225,7 +225,7 @@ define([''], function (){
         return {
             restrict: 'E',
             replace: true,
-            template: '<div><ul class="nav nav-tabs" role="tablist" ng-transclude></ul></div>',
+            template: '<div><ul class="nav nav-tabs" role="tablist" ng-transclude></ul><div class="tab-content"><ui-view></ui-view></div></div>',
             transclude: true,
             scope: {
 
@@ -238,7 +238,7 @@ define([''], function (){
             }
         }
     });
-    module.directive('ccTab', function () {
+    module.directive('ccTabHead', function () {
         return {
             restrict: 'EA',
             replace: true,

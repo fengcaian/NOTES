@@ -1,6 +1,21 @@
 define(['src/command-component/cmd-cmt'], function (cc) {
-   var module = angular.module('framework',[cc.name]);
-   module.controller('myController', ['$scope', function ($scope) {
+   var module = angular.module('framework',[cc.name, 'ui.router']);
+    module.config(["$stateProvider", function ($stateProvider){
+        $stateProvider.state("home", { //导航用的名字，如<a ui-sref="login">login</a>里的login
+            url: '/home',    //访问路径
+            template:'<div>home</div>'
+        }).state('profile', {
+            url:'profile',
+            template: '<div>message</div>'
+        }).state('message', {
+            url:'/message',
+            template: '<div>profile</div>'
+        }).state('settings', {
+            url:'/settings',
+            template: '<div>settings</div>'
+        })
+    }]);
+   module.controller('myController', ['$scope', '$state', function ($scope, $state) {
        $scope.balls = {
            placeholder: '-- 请选择 --',
            value: '',
@@ -224,33 +239,37 @@ define(['src/command-component/cmd-cmt'], function (cc) {
        };
        $scope.badge = {
            data: 12
-       }
+       };
        $scope.tabData = {
            activeId: 1,
            tabs: [
                {
                    id: 1,
                    label: 'Home',
-                   href: 'home'
+                   href: 'home',
+                   state: 'home'
                },
                {
                    id: 2,
                    label: 'Profile',
-                   href: 'profile'
+                   href: 'profile',
+                   state: 'profile'
                },
                {
                    id: 3,
                    label: 'Messages',
-                   href: 'messages'
+                   href: 'messages',
+                   state: 'message'
                },
                {
                    id: 4,
                    label: 'Settings',
-                   href: 'settings'
+                   href: 'settings',
+                   state: 'settings'
                }
            ],
            select: function (event, tab) {
-               console.log(tab);
+               $state.go(tab.state);
            }
        }
    }]);

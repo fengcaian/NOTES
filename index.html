@@ -8,6 +8,7 @@
     <script src="lib/jquery/jquery-1.9.1.js"></script>
     <script src="lib/bootstrap/bootstrap.js"></script>
     <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-ui-router.js"></script>
     <script src="main.js"></script>
 </head>
 <body ng-controller="myController">
@@ -25,7 +26,7 @@
 </button>
 <cc-badge data="badge.data"></cc-badge>
 <cc-tabs>
-    <cc-tab ng-repeat="tab in tabData.tabs" data="tab" active-id="tabData.activeId" ng-select="tabData.select"></cc-tab>
+    <cc-tab-head ng-repeat="tab in tabData.tabs" data="tab" active-id="tabData.activeId" ng-select="tabData.select"></cc-tab-head>
 </cc-tabs>
 </body>
 </html>

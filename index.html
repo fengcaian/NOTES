@@ -25,7 +25,7 @@
 </button>
 <cc-badge data="badge.data"></cc-badge>
 <cc-tabs>
-    <cc-tab ng-repeat="tab in tabData.tabs" data="tab" active-id="tabData.activeId" ></cc-tab>
+    <cc-tab ng-repeat="tab in tabData.tabs" data="tab" active-id="tabData.activeId" ng-select="tabData.select"></cc-tab>
 </cc-tabs>
 </body>
 </html>

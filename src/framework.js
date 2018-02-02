@@ -250,7 +250,7 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                }
            ],
            select: function (event, tab) {
-
+               console.log(tab);
            }
        }
    }]);

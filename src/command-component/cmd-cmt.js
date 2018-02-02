@@ -242,16 +242,19 @@ define([''], function (){
         return {
             restrict: 'EA',
             replace: true,
-            template: '<li role="presentation" ng-class="{true: '+"'active', false: ''"+'}[data.id === activeId]"><a href="#{{data.href}}" aria-controls="{{data.href}}" role="tab" data-toggle="tab" ng-click="">{{data.label}}</a></li>\n',
+            template: '<li role="presentation" ng-class="{true: '+"'active', false: ''"+'}[data.id === activeId]">' +
+            '<a href="#{{data.href}}" aria-controls="{{data.href}}" role="tab" data-toggle="tab" ng-click="ngSelect($event, data)">{{data.label}}</a>' +
+            '</li>\n',
             scope: {
                 data: '=',
-                activeId: '=activeId'
+                activeId: '=activeId',
+                ngSelect: '=ngSelect'
             },
             controller: function ($scope) {
 
             },
             link: function (scope, element) {
-                console.log(scope.activeId);
+                console.log(scope);
             }
         }
     });

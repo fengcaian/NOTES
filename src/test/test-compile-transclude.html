@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="testapp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="parentController">
+    <button-bar>
+        <button class="primary" ng-click="onPrimary1Click()">{{primary1Label}}</button>
+        <button class="primary">Primary2</button>
+        <button class="secondary">Secondary1</button>
+    </button-bar>
+</div>
+</body>
+<script src="../../lib/angular/angular.js"></script>
+<script>
+    var testapp = angular.module('testapp', []);
+    testapp.controller('parentController', ['$scope', '$window', function($scope, $window) {
+        $scope.primary1Label = 'Prime1';
+        $scope.onPrimary1Click = function() {
+            $window.alert('Primary 1 clicked');
+        }
+    }]);
+    testapp.directive('primary', function() {
+        return {
+            restrict: 'C',
+            link: function(scope, element, attrs) {
+                element.addClass('btn btn-primary');
+            }
+        }
+    });
+    testapp.directive('secondary', function() {
+        return {
+            restrict: 'C',
+            link: function(scope, element, attrs) {
+                element.addClass('btn');
+            }
+        }
+    });
+    testapp.directive('buttonBar', function() {
+        return {
+            restrict: 'EA',
+            template: '<div class="span4 well clearfix"><div class="primary-block pull-right"></div><div class="secondary-block"></div></div>',
+            replace: true,
+            transclude: true,
+            compile: function(elem, attrs, transcludeFn) {
+                return function (scope, element, attrs) {
+                    transcludeFn(scope, function(clone) {
+                        var primaryBlock = elem.find('div.primary-block');
+                        var secondaryBlock = elem.find('div.secondary-block');
+                        var transcludedButtons = [clone[1], clone[3], clone[5]];
+                        angular.forEach(transcludedButtons, function(e) {
+                            if (angular.element(e).hasClass('primary')) {
+                                primaryBlock.append(e);
+                            } else if (angular.element(e).hasClass('secondary')) {
+                                secondaryBlock.append(e);
+                            }
+                        });
+                    });
+                };
+            }
+        };
+    });
+</script>
+</html>

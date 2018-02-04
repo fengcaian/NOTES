@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-controller="myCtrl">
+<hello name="{{name}}"><span>{{action}}</span></hello>
+</body>
+<script src="../../lib/angular/angular.js"></script>
+<script>
+    var app = angular.module('myapp',[]);
+    app.controller('myCtrl', ['$scope', function ($scope){
+        $scope.name = "Jhon";
+    $scope.action = "你好";
+    }]);
+    app.directive('hello', function (){
+        return {
+            restrict: 'E',
+            transclude: true,
+            controller: ['$scope', '$element', '$transclude', function($scope, $element, $transclude){
+                $transclude(function (clone){
+                    //$element.find只能通过标签名进行查找
+                    $element.find('span').append(clone);
+                });
+            }],
+            template: '<div><span></span>{{name}}</div>',
+            scope: {
+                name: '@'
+            }
+        }
+    });
+</script>
+</html>

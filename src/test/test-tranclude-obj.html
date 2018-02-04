@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+</head>
+<body ng-controller="testController">
+<h1>嵌套一个指令</h1>
+<pop-select>
+    <child-elem></child-elem>
+</pop-select>
+
+<h1>&nbsp;</h1>
+
+<h1>嵌套多个指令</h1>
+<parent-directive>
+    <child-elem></child-elem>
+    <child-elem2></child-elem2>
+    <child-elem3></child-elem3>
+</parent-directive>
+</body>
+<script src="../../lib/angular/angular.js"></script>
+<script>
+    var app=angular.module('myApp', []);
+    app.controller("testController",function($scope){
+
+    });
+    app.directive('popSelect',[function(){
+        return {
+            restrict: 'AE',
+            scope:{
+
+            },
+            transclude:true,
+            replace:true,
+            template:'<div>'+
+            '<div><input type="text" ng-model="input" ng-focus="hasDate=true"/></div>'+
+            '<div ng-transclude></div>'+
+            '<div>这是popselect指令的内容</div>'+
+            '</div>',
+            link:function(scope, elem, attrs){
+
+            }
+        }
+    }]);
+    app.directive('parentDirective',[function(){
+        return {
+            restrict: 'AE',
+            transclude:{
+                'child1':"childElem",
+                'child2':"childElem2",
+                'child3':"childElem3"
+            },
+            replace:true,
+            template:
+            '<div>'+
+            '<div>'+
+            '<input type="text" ng-model="input" value="这是parant指令"/>'+
+            '</div>'+
+            '<div ng-transclude="child2"></div>'+
+            '<div ng-transclude="child3"></div>'+
+            '<div ng-transclude="child1"></div>'+
+            '</div>',
+            link:function(scope, elem, attrs){
+
+            }
+        }
+    }]);
+    app.directive('childElem',[function(){
+        return {
+            restrict: 'AE',
+            replace:true,
+            template:'<div>'+
+            '<div>这是child指令的内容</div>'+
+            '</div>',
+            link:function(scope, elem, attrs){
+
+            }
+        }
+    }]);
+    app.directive('childElem2',[function(){
+        return {
+            restrict: 'AE',
+            replace:true,
+            template:'<div>'+
+            '<div>这是childElem2指令的内容</div>'+
+            '</div>',
+            link:function(scope, elem, attrs){
+
+            }
+        }
+    }])
+
+    app.directive('childElem3',[function(){
+        return {
+            restrict: 'AE',
+            replace:true,
+            template:'<div>'+
+            '<div>这是childElem3指令的内容</div>'+
+            '</div>',
+            link:function(scope, elem, attrs){
+
+            }
+        }
+    }])
+</script>
+</html>

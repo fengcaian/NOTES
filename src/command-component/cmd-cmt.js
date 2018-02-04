@@ -225,12 +225,18 @@ define([''], function (){
         return {
             restrict: 'E',
             replace: true,
-            template: '<div><ul class="nav nav-tabs" role="tablist" ng-transclude></ul><div class="tab-content"><ui-view></ui-view></div></div>',
-            transclude: true,
+            template: '<div>' +
+            '<ul class="nav nav-tabs" role="tablist" ng-transclude="head"></ul>' +
+            '<div class="tab-content" ng-transclude="body"></div>' +
+            '</div>',
+            transclude: {
+                head: 'ccTabHead',
+                body: 'ccTabBody'
+            },
             scope: {
 
             },
-            controller: function ($scope) {
+            controller: function ($scope, $element, $transclude) {
 
             },
             link: function (scope, element, s, ctrl, transclude ){
@@ -256,6 +262,13 @@ define([''], function (){
             link: function (scope, element) {
                 console.log(scope);
             }
+        }
+    });
+    module.directive('ccTabBody', function () {
+        return {
+            restrict: 'EA',
+            replace: true,
+            template: ''
         }
     });
     return module;

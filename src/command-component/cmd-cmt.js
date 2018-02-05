@@ -225,14 +225,9 @@ define([''], function (){
         return {
             restrict: 'E',
             replace: true,
-            template: '<div>' +
-            '<ul class="nav nav-tabs" role="tablist" ng-transclude="head"></ul>' +
-            '<div class="tab-content" ng-transclude="body"></div>' +
+            template: '<div ng-transclude>' +
             '</div>',
-            transclude: {
-                head: 'ccTabHead',
-                body: 'ccTabBody'
-            },
+            transclude: true,
             scope: {
 
             },
@@ -244,12 +239,27 @@ define([''], function (){
             }
         }
     });
-    module.directive('ccTabHead', function () {
+    module.directive('ccTab', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            transclude: true,
+            template: '<ul class="nav nav-tabs" role="tablist" ng-transclude></ul>',
+            scope: '',
+            controller: function ($scope) {
+
+            },
+            link: function (scope, element) {
+
+            }
+        }
+    });
+    module.directive('ccTabHead', ['$timeout', function ($timeout) {
         return {
             restrict: 'EA',
             replace: true,
             template: '<li role="presentation" ng-class="{true: '+"'active', false: ''"+'}[data.id === activeId]">' +
-            '<a href="#{{data.href}}" aria-controls="{{data.href}}" role="tab" data-toggle="tab" ng-click="ngSelect($event, data)">{{data.label}}</a>' +
+            '<a href="#{{data.href}}" aria-controls="{{data.href}}" role="tab" data-toggle="tab" ng-click="select()">{{data.label}}</a>' +
             '</li>\n',
             scope: {
                 data: '=',
@@ -260,15 +270,23 @@ define([''], function (){
 
             },
             link: function (scope, element) {
-                console.log(scope);
+                $timeout(function () {
+                    if (scope.activeId === scope.data.id) {
+                        scope.select();
+                    }
+                }, 0);
+                scope.select = function () {
+                    scope.ngSelect && scope.ngSelect(scope.data);
+                }
             }
         }
-    });
-    module.directive('ccTabBody', function () {
+    }]);
+    module.directive('ccContent', function () {
         return {
             restrict: 'EA',
             replace: true,
-            template: ''
+            transclude: true,
+            template: '<div class="tab-content" ng-transclude></div>'
         }
     });
     return module;

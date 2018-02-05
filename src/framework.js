@@ -4,11 +4,11 @@ define(['src/command-component/cmd-cmt'], function (cc) {
         $stateProvider.state("home", { //导航用的名字，如<a ui-sref="login">login</a>里的login
             url: '/home',    //访问路径
             template:'<div>home</div>'
-        }).state('profile', {
-            url:'profile',
-            template: '<div>message</div>'
         }).state('message', {
-            url:'/message',
+            url:'message',
+            template: '<div>message</div>'
+        }).state('profile', {
+            url:'/profile',
             template: '<div>profile</div>'
         }).state('settings', {
             url:'/settings',
@@ -241,7 +241,7 @@ define(['src/command-component/cmd-cmt'], function (cc) {
            data: 12
        };
        $scope.tabData = {
-           activeId: 1,
+           activeId: 3,
            tabs: [
                {
                    id: 1,
@@ -268,7 +268,7 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                    state: 'settings'
                }
            ],
-           select: function (event, tab) {
+           select: function (tab) {
                $state.go(tab.state);
            }
        }

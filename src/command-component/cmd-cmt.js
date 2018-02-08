@@ -291,3 +291,16 @@ define([''], function (){
     });
     return module;
 });
+define(['command-component'], function (cmdCmt) {
+    var module = cmdCmt.module;
+    module.provider('ccModal', function () {
+        var self = this;
+        self.fun = function () {
+            console.log('1234');
+        };
+        self.$get = function () {
+            return self;
+        }
+    });
+    return module;
+});

@@ -15,7 +15,7 @@ define(['src/command-component/cmd-cmt'], function (cc) {
             template: '<div>settings</div>'
         })
     }]);
-   module.controller('myController', ['$scope', '$state', function ($scope, $state) {
+   module.controller('myController', ['$scope', '$state', 'ccModal', function ($scope, $state, ccModal) {
        $scope.balls = {
            placeholder: '-- 请选择 --',
            value: '',
@@ -53,6 +53,7 @@ define(['src/command-component/cmd-cmt'], function (cc) {
            click: function (e) {
                console.log(this.type);
                console.log(e);
+               cmdCmtService.fun();
            }
        };
        $scope.dropdown = {

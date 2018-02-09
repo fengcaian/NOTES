@@ -1,10 +1,5 @@
-define([''], function (){
+define('cmd', [''], function (){
     var module = angular.module('command-component',[]);
-    /*module.service('deepCopy', function () {
-        var _deepCopy = function (data) {
-
-        }
-    });*/
     module.directive('ccSelect', function () {
         return {
             restrict: 'E',
@@ -291,9 +286,8 @@ define([''], function (){
     });
     return module;
 });
-define(['command-component'], function (cmdCmt) {
-    var module = cmdCmt.module;
-    module.provider('ccModal', function () {
+define(['cmd'], function (cmdModule) {
+    cmdModule.provider('ccModal', function () {
         var self = this;
         self.fun = function () {
             console.log('1234');
@@ -302,5 +296,5 @@ define(['command-component'], function (cmdCmt) {
             return self;
         }
     });
-    return module;
+    return cmdModule;
 });

@@ -42,6 +42,7 @@ define(['src/command-component/cmd-cmt'], function (cc) {
            change: function (e, option){
                console.log(this);
                console.log(option);
+               ccModal.fun();
            }
        };
        $scope.btn = {

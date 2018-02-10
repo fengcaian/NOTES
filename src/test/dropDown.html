@@ -179,7 +179,14 @@
     <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
     <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
 </div>
+<button type="button" class="btn btn-lg btn-danger" data-trigger="focus" data-toggle="popover" data-content="And here's some amazing content. It's very engaging. Right?">点我弹出/隐藏弹出框</button>
+<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">点我弹出/隐藏弹出框</button>
 </body>
 <script src="../../lib/jquery/jquery-1.9.1.js"></script>
 <script src="../../lib/bootstrap/bootstrap.js"></script>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover();
+    })
+</script>
 </html>

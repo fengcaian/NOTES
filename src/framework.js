@@ -274,6 +274,11 @@ define(['src/command-component/cmd-cmt'], function (cc) {
                $state.go(tab.state);
            }
        }
+       $scope.tip = {
+           title: '',
+           content: 'And here\'s some amazing content. It\'s very engaging. Right?',
+           isFocus: true
+       }
    }]);
    return module;
 });

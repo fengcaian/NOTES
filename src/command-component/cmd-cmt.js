@@ -284,6 +284,22 @@ define('cmd', [''], function (){
             template: '<div class="tab-content" ng-transclude></div>'
         }
     });
+    module.directive('ccTip', function () {
+        return {
+            restrict: 'A',
+            replace: true,
+            template: '',
+            scope: {
+                tip: '='
+            },
+            controller: function ($scope) {
+
+            },
+            link: function (scope, element) {
+                console.log(scope);
+            }
+        }
+    });
     return module;
 });
 define(['cmd'], function (cmdModule) {

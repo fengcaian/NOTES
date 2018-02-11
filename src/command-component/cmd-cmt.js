@@ -290,13 +290,17 @@ define('cmd', [''], function (){
             replace: true,
             template: '',
             scope: {
-                tip: '='
+                ccTip: '=ccTip'
             },
             controller: function ($scope) {
 
             },
             link: function (scope, element) {
-                console.log(scope);
+                element.attr('data-trigger', 'focus');
+                element.attr('data-toggle', 'popover');
+                element.attr('data-content', 'jhlk');
+                element.attr('name', 'pop');
+                $('[data-toggle="popover"]').popover();
             }
         }
     });

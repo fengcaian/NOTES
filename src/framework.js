@@ -273,11 +273,12 @@ define(['src/command-component/cmd-cmt'], function (cc) {
            select: function (tab) {
                $state.go(tab.state);
            }
-       }
+       };
        $scope.tip = {
            title: '',
            content: 'And here\'s some amazing content. It\'s very engaging. Right?',
-           isFocus: true
+           isFocus: true,
+           position: ''
        }
    }]);
    return module;

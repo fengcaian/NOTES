@@ -278,7 +278,8 @@ define(['src/command-component/cmd-cmt'], function (cc) {
            title: '',
            content: 'And here\'s some amazing content. It\'s very engaging. Right?',
            isFocus: true,
-           position: ''
+           position: '',
+           triggerEvent: 'click'
        }
    }]);
    return module;

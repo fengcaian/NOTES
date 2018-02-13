@@ -1,5 +1,27 @@
 define('cmd', [''], function (){
     var module = angular.module('command-component',[]);
+    module.provider('deepCopy', function () {
+        var self = this;
+        self.deepCopy = function (obj) {
+            var type = Object.prototype.toString.call(obj).slice(8,-1);
+            if(type === 'Array') {
+                return obj.slice(0);
+            }else if(type === 'Object'){
+                var newN = {};
+                for(var k in obj){
+                    if(obj.hasOwnProperty(k)){
+                        newN[k]=typeof obj[k] === 'object' ? deepCopy(obj[k]) : obj[k];
+                    }
+                }
+                return newN;
+            }else{
+                return obj;
+            }
+        };
+        self.$get = function () {
+            return self;
+        }
+    });
     module.directive('ccSelect', function () {
         return {
             restrict: 'E',
@@ -296,13 +318,34 @@ define('cmd', [''], function (){
 
             },
             link: function (scope, element) {
-                element.attr('data-trigger', 'focus');
+                var config = {
+                    triggerEvent: 'hover',
+                    isFocus: true
+                };
+                scope.ccTip = $.extend(config, scope.ccTip);
+                element.attr('data-trigger', scope.ccTip.triggerEvent);
                 element.attr('data-toggle', 'popover');
-                element.attr('data-content', 'jhlk');
-                element.attr('name', 'pop');
+                element.attr('data-content', scope.ccTip.content);
+                if (element.tagName === 'div' && scope.ccTip.triggerEvent) {
+                    element.attr('tabindex', 1);
+                }
+                if (scope.ccTip.title) {
+                    element.attr('title', scope.ccTip.title);
+                }
                 $('[data-toggle="popover"]').popover();
             }
         }
+    });
+    module.directive('ccRightClick', function($parse) {
+        return function(scope, element, attrs) {
+            var fn = $parse(attrs.ccRightClick);
+            element.bind('contextmenu', function(event) {
+                scope.$apply(function() {
+                    event.preventDefault();
+                    fn(scope, {$event:event});
+                });
+            });
+        };
     });
     return module;
 });

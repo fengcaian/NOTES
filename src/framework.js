@@ -280,6 +280,9 @@ define(['src/command-component/cmd-cmt'], function (cc) {
            isFocus: true,
            position: '',
            triggerEvent: 'click'
+       };
+       $scope.rightClick = function (event) {
+           console.log(1234);
        }
    }]);
    return module;

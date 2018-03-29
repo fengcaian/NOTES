@@ -282,7 +282,7 @@ define(['src/command-component/cmd-cmt'], function (cc) {
            triggerEvent: 'click'
        };
        $scope.rightClick = function (event) {
-           console.log(1234);
+           console.log(12345);
        }
    }]);
    return module;

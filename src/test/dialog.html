@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .box {
+            width: 400px; padding: 15px;  background-color: #f0f3f9;
+        }
+        .container {
+            height: 0; position: relative;  overflow: hidden;
+            -webkit-transition: height 0.6s;
+            -moz-transition: height 0.6s;
+            -o-transition: height 0.6s;
+            transition: height 0.6s;
+        }
+        .container img {
+            position: absolute;  bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<p><a href="javascript:" id="button">点击</a></p>
+<div id="more" class="container">
+    <img src="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg" height="191" />
+</div>
+</body>
+<script>
+    (function() {
+        var eleBtn = document.getElementById("button"),
+            eleMore = document.getElementById("more");
+
+        var display = false;
+
+        eleBtn.onclick = function() {
+            display = !display;
+            eleMore.style.height = display? "192px": "0px"
+            return false;
+        };
+    })();
+</script>
+</html>
